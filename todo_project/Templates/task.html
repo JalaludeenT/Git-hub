@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="heading">
+                <div class="heading-text" align="center">
+                    <h5><b>ToDo App</b></h5>
+                </div>
+                <div class="heading-button" align="right">
+                    <a class="btn btn-primary" href="/admin" >Admin</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <h5><b>Create Tasks</b></h5>
+            <form method="post" class="p-3 shadow">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Enter Task Name" name="task"><br>
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" placeholder="Enter your Priority" name="priority"><br>
+                </div>
+                <div class="form-group">
+                    <input type="date" class="form-control" style="width:30%" placeholder="Enter the Date" name="Date"><br>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success d-block mx-auto">
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h5><b>Completed Tasks</b></h5>
+            {% for i in task1 %}
+            <div class="shadow card">
+                <div class="card-body">
+                    <h5 class="card-title">{{i.name}}</h5>
+                    <h6 class="card-date">{{i.Date}}</h6>
+                    <p><b>{{i.priority}}</b></p>
+                    <a class="btn btn-info" href="{% url 'details' i.id %}">Details</a>
+                    <a class="btn btn-warning" href="{% url 'update' i.id %}">Edit</a>
+                    <a class="btn btn-danger" href="{% url 'delete' i.id %}">Done</a>
+                </div>
+            </div>
+            <br>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

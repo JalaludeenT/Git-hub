@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row" >
+        <div class="col-md-4">
+        </div>
+            <div class="col-md-4">
+                <form method="post" style="margin-top: 100px">
+                    {% csrf_token %}
+                    <div class="shadow card">
+                        <h5 class="card-title-edit" align="center">Edit The Tasks</h5>
+                        <div class="card-body">
+                            <div class="form-group" align="center">
+                                <h5 class="form-control">{{form.as_p}}</h5>
+                                <a class="btn btn-success" href="/">Back</a>
+                                <button class="btn btn-danger">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    </div>
+</div>
+{% endblock %}
